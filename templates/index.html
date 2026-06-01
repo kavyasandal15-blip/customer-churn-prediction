@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Churn Prediction</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container{
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label{
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select{
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        button{
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover{
+            background-color: #0056b3;
+        }
+
+        h2{
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Customer Churn Prediction</h1>
+
+        <form action="/predict" method="post">
+
+            <label>Gender</label>
+<select name="gender" required>
+    <option value="" disabled selected>Select Gender</option>
+    <option value="0">Female</option>
+    <option value="1">Male</option>
+</select>
+
+<label>Senior Citizen</label>
+<select name="SeniorCitizen" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+</select>
+
+<label>Partner</label>
+<select name="Partner" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+</select>
+
+<label>Dependents</label>
+<select name="Dependents" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+</select>
+
+<label>Tenure</label>
+<input type="text" name="tenure" placeholder="Enter tenure">
+
+<label>Phone Service</label>
+<select name="PhoneService" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+</select>
+
+<label>Multiple Lines</label>
+<select name="MultipleLines" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No phone service</option>
+</select>
+
+<label>Internet Service</label>
+<select name="InternetService" required>
+    <option value="" disabled selected>Select Internet Service</option>
+    <option value="0">DSL</option>
+    <option value="1">Fiber Optic</option>
+    <option value="2">No</option>
+</select>
+
+<label>Online Security</label>
+<select name="OnlineSecurity" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Online Backup</label>
+<select name="OnlineBackup" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Device Protection</label>
+<select name="DeviceProtection" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Tech Support</label>
+<select name="TechSupport" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Streaming TV</label>
+<select name="StreamingTV" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Streaming Movies</label>
+<select name="StreamingMovies" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+    <option value="2">No internet service</option>
+</select>
+
+<label>Contract</label>
+<select name="Contract" required>
+    <option value="" disabled selected>Select Contract</option>
+    <option value="0">Month-to-month</option>
+    <option value="1">One year</option>
+    <option value="2">Two year</option>
+</select>
+
+<label>Paperless Billing</label>
+<select name="PaperlessBilling" required>
+    <option value="" disabled selected>Select Option</option>
+    <option value="0">No</option>
+    <option value="1">Yes</option>
+</select>
+
+<label>Payment Method</label>
+<select name="PaymentMethod" required>
+    <option value="" disabled selected>Select Payment Method</option>
+    <option value="0">Bank transfer</option>
+    <option value="1">Credit card</option>
+    <option value="2">Electronic check</option>
+    <option value="3">Mailed check</option>
+</select>
+
+<label>Monthly Charges</label>
+<input type="text" name="MonthlyCharges" placeholder="Enter monthly charges">
+
+<label>Total Charges</label>
+<input type="text" name="TotalCharges" placeholder="Enter total charges">
+
+            <button type="submit">Predict Churn</button>
+
+        </form>
+
+        <h2>{{ prediction_text }}</h2>
+
+    </div>
+
+</body>
+</html>
